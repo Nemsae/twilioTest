@@ -2,8 +2,6 @@ require('dotenv').config({ silent: true });
 const Twilio = require('twilio');
 const express = require('express');
 
-const Subscriber = require('../models/Subscriber');
-
 const router = express.Router();
 const client = new Twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
