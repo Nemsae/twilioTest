@@ -30,7 +30,7 @@ router.route('/inbound')
 .get((req, res) => {
   // console.log('res: ', res);
   res.set('Content-Type', 'text/xml');
-  res.send('<Response><Message>Touchdown, Bo Jackson!</Message></Response>');
+  res.send('<Response><Message>Rixi says hi!</Message></Response>');
   //   content_type 'text/xml'
   //   '<Response><Message>Touchdown, Bo Jackson!</Message></Response>'
   // end

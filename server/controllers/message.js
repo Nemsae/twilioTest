@@ -60,4 +60,11 @@ exports.webhook = (request, response) => {
       respond(responseMessage);
     }
   }
+
+  function respond(message) {
+    response.type('text/xml');
+    response.render('twiml', {
+      message: message,
+    });
+  }
 };
