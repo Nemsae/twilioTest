@@ -53,6 +53,9 @@ SubscriberSchema.statics.sendMessage = (message, url, callback) => {
         }
       });
     });
+
+    //  Don't wait on success/failure, just indicate that all message have queued for delivery
+    callback.call(this);
   }
 };
 

@@ -9,4 +9,4 @@
 5. `$ cd..`
 6. `$ npm start`
 
-### Encrypted messages are persisted on a MongoDB server.
+### Twilio Subscription tests
