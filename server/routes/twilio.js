@@ -6,18 +6,16 @@ const router = express.Router();
 const client = new Twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
 router.route('/')
+//  Sending a message to specified receiver from our Twilio account
 .post((req, res) => {
   const messageReq = req.body;
   console.log('messageReq: ', messageReq);  // eslint-disable-line no-console
   client.messages.create({
     body: messageReq.body,
-    to: messageReq.receiver,  // Text this number
-    from: messageReq.sender, // From a valid Twilio number
+    to: messageReq.receiver,  // Text this number ex. "+16506782956"
+    from: messageReq.sender, // From a valid Twilio number ex. "+16504259920"
   })
   .then((message) => {
-    // console.log('message: ', message);
-    // console.log(message.sid);
-    // res.send(JSON.stringify(message));
     res.send(message.sid);
   })
   .catch((err) => {
@@ -27,13 +25,10 @@ router.route('/')
 });
 
 router.route('/inbound')
+//  When someone texts our Twilio account, we respond with a message
 .get((req, res) => {
-  // console.log('res: ', res);
   res.set('Content-Type', 'text/xml');
   res.send('<Response><Message>Rixi says hi!</Message></Response>');
-  //   content_type 'text/xml'
-  //   '<Response><Message>Touchdown, Bo Jackson!</Message></Response>'
-  // end
 });
 
 module.exports = router;
