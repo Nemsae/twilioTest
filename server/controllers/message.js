@@ -81,6 +81,11 @@ exports.sendMessages = (request, response) => {
   }).then((subscribers) => {
     messageSender.sendMessageToSubscribers(subscribers, message, imageUrl);
   }).then(() => {
-    request.flash('successes', 'Messages on their way!')
-  });
+    request.flash('successes', 'Messages on their way!');
+    response.redirect('/');
+  }).catch((err) => {
+    console.log(`err ${err.emessage}`);
+    request.flash('errors', err.message);
+
+  })
 }
