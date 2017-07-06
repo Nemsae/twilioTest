@@ -1,6 +1,7 @@
 require('dotenv').config({ silent: true });
 const Twilio = require('twilio');
 const express = require('express');
+const message = require('../controllers/message');
 
 const router = express.Router();
 const client = new Twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
@@ -30,5 +31,17 @@ router.route('/inbound')
   res.set('Content-Type', 'text/xml');
   res.send('<Response><Message>Rixi says hi!</Message></Response>');
 });
+
+router.route('/message')
+//  When
+// .post('/message', message.webhook);
+.post(message.webhook);
+
+//  Render a page that will allow an admin to send out a message to subs
+// app.get('/', pages.showForm);
+
+router.route('/message')
+//  Handle form submission and send messages to subscribers
+app.post('/message/send', message.sendMessages);
 
 module.exports = router;
