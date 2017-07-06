@@ -68,3 +68,19 @@ exports.webhook = (request, response) => {
     });
   }
 };
+
+//  Handle form submission
+exports.sendMessages = (request, response) => {
+  //  Get message info from form submission
+  const message = request.body.message;
+  const imageUrl = request.body.imageUrl;
+
+  //  Send messages to all subs
+  Subscriber.find({
+    subscribed: true,
+  }).then((subscribers) => {
+    messageSender.sendMessageToSubscribers(subscribers, message, imageUrl);
+  }).then(() => {
+    request.flash('successes', 'Messages on their way!')
+  });
+}

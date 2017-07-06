@@ -1,4 +1,5 @@
-# Enigma - Encrypted Message
+# twilio test
+## ssh -i node.pem ubuntu@ec2-52-32-31-132.us-west-2.compute.amazonaws.com
 
 ## SETUP
 1. `$ git clone https://github.com/Nemsae/enigma`
@@ -8,4 +9,4 @@
 5. `$ cd..`
 6. `$ npm start`
 
-### Encrypted messages are persisted on a MongoDB server. 
+### Encrypted messages are persisted on a MongoDB server.
