@@ -22,8 +22,8 @@ exports.webhook = (request, response) => {
         if (err || !newSub) {
           return respond('We couldn\'t sign you up - try again.');
         }
-        respond('Thanks for contacting us! Text "subscribe" to receive' +
-          'exclusive offers and coupons.');
+        respond('Thanks for contacting Rixi! Text "subscribe" to receive' +
+          'exclusive offers and coupons from us.');
       });
     } else {
       //  Existing user, process any messages they are sending,
@@ -68,12 +68,6 @@ exports.webhook = (request, response) => {
           <Message>${message}</Message>
       </Response>`
     );
-    // response.render('twiml', {
-    //   message: message,
-    // });
-// doctype xml
-// Response
-//   Message= message
   }
 };
 
@@ -92,8 +86,8 @@ exports.sendMessages = (request, response) => {
     request.flash('successes', 'Messages on their way!');
     response.redirect('/');
   }).catch((err) => {
-    console.log(`err ${err.emessage}`);
+    console.log(`err ${err.emessage}`);  // eslint-disable-line no-console
     request.flash('errors', err.message);
     response.redirect('/');
-  })
-}
+  });
+};
