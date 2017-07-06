@@ -11,10 +11,12 @@ router.route('/message/send')
 //  Handle form submission and send messages to subscribers
 .post(message.sendMessages);
 
+//  LIVE WEBHOOK
 router.route('/message')
 //  When a user texts our number
 .post(message.webhook);
 
+//  DEAD WEBHOOK
 router.route('/inbound')
 //  When someone texts our Twilio account, we respond with a message
 .get((req, res) => {
