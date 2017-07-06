@@ -6,7 +6,7 @@ const messageSender = require('../lib/messageSender');
 exports.webhook = (request, response) => {
   //  Grabbing user's phone number
   const phone = request.body.From;
-
+  console.log('request.body:webhook ', request.body);
   Subscriber.findOne({
     phone,
   }, (err, sub) => {
@@ -15,7 +15,7 @@ exports.webhook = (request, response) => {
     if (!sub) {
       //  If no sub, create one
       const newSubscriber = new Subscriber({
-        phone: phone,
+        phone,
       });
 
       newSubscriber.save((err, newSub) => {
@@ -26,7 +26,7 @@ exports.webhook = (request, response) => {
           'exclusive offers and coupons.');
       });
     } else {
-      //  Existing user, process any input messages they are sending,
+      //  Existing user, process any messages they are sending,
       //  and send back appropiate message
       processMessage(sub);
     }
@@ -63,9 +63,17 @@ exports.webhook = (request, response) => {
 
   function respond(message) {
     response.type('text/xml');
-    response.render('twiml', {
-      message: message,
-    });
+    response.send(
+      `<Response>
+          <Message>${message}</Message>
+      </Response>`
+    );
+    // response.render('twiml', {
+    //   message: message,
+    // });
+// doctype xml
+// Response
+//   Message= message
   }
 };
 
@@ -86,6 +94,6 @@ exports.sendMessages = (request, response) => {
   }).catch((err) => {
     console.log(`err ${err.emessage}`);
     request.flash('errors', err.message);
-
+    response.redirect('/');
   })
 }

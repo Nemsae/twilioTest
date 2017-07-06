@@ -33,15 +33,15 @@ router.route('/inbound')
 });
 
 router.route('/message')
-//  When
-// .post('/message', message.webhook);
+//  When a user texts our number
 .post(message.webhook);
+// .post('/message', message.webhook);
 
 //  Render a page that will allow an admin to send out a message to subs
 // app.get('/', pages.showForm);
 
 router.route('/message')
 //  Handle form submission and send messages to subscribers
-app.post('/message/send', message.sendMessages);
+// .post('/message/send', message.sendMessages);
 
 module.exports = router;

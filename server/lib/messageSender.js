@@ -1,8 +1,8 @@
-const twilio = require('twilio');
+require('dotenv').config({ silent: true });
+const Twilio = require('twilio');
 const config = require('../config/twilioConfig');
 
-// create an authenticated Twilio REST API client
-const client = twilio(config.accountSid, config.authToken);
+const client = new Twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
 const sendSingleTwilioMessage = (subscriber, message, url) => {
   // Create options to send the message
