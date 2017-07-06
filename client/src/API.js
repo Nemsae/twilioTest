@@ -37,7 +37,6 @@ const API = {
   },
 
   sendMessage(messagePackage) {
-    console.log('messagePackage:API ', messagePackage);
     axios.post('/api/twilio/message/send', messagePackage)
     .then((res) => {
       console.log('res.data: ', res.data);  // eslint-disable-line no-console

@@ -83,12 +83,13 @@ exports.sendMessages = (request, response) => {
   Subscriber.find({
     subscribed: true,
   }).then((subscribers) => {
-    messageSender.sendMessageToSubscribers(subscribers, message, imageUrl);
+    return messageSender.sendMessageToSubscribers(subscribers, message, imageUrl);
   }).then(() => {
     response.status(200).send('sendMessage success!');
   }).catch((err) => {
-    console.log(`err ${err.meessage}`);  // eslint-disable-line no-console
-    response.status(400).send(err.message);
+    console.log(`err ${err.message}`);  // eslint-disable-line no-console
+    // response.status(400).send(err.message);
+    response.status(500).send(err.message);
   });
 };
 
