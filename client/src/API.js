@@ -12,6 +12,7 @@ const API = {
       console.log('err: ', err);  // eslint-disable-line no-console
     });
   },
+
   sendDecryption(decryptionPackage) {
     axios.get('/api/enigma', {
       params: decryptionPackage,
@@ -29,6 +30,16 @@ const API = {
           break;
         default:
       }
+    })
+    .catch((err) => {
+      console.log('err: ', err);  // eslint-disable-line no-console
+    });
+  },
+
+  sendMessage(messagePackage) {
+    axios.post('/api/twilio/message', messagePackage)
+    .then((res) => {
+      console.log('res.data: ', res.data);  // eslint-disable-line no-console
     })
     .catch((err) => {
       console.log('err: ', err);  // eslint-disable-line no-console

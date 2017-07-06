@@ -14,14 +14,14 @@ const todaysDate = new Date(Date.now());
 const minimumDate = new Date(todaysDate.setDate(todaysDate.getDate() - 1));
 
 const EnigmaCard = (props) => {
-  const { sender, message, date, handleChange, handleEncryptionToggle } = props;
+  const { sender, message, date, handleChange, sendMessage, handleEncryptionToggle } = props;
   return (
     <div>
       <Card style={style.container}>
-        <div style={style.title}>Enigma</div>
+        <div style={style.title}>RIXI</div>
         <Input
           type='text'
-          label='Name'
+          label='Restaurant Name'
           id='sender'
           value={sender}
           icon={<Avatar>{sender[0]}</Avatar>}
@@ -30,17 +30,17 @@ const EnigmaCard = (props) => {
         />
         <Input
           type='text'
-          label='Message'
+          label='Message to Subscribers'
           id='message'
           value={message}
-          hint='Type your secret message here!'
+          hint='Type a message to your subscribers!'
           maxLength={120}
           onChange={handleChange}
           multiline
           required
         />
         <DatePicker
-          label='Expiration date'
+          label='Date of Event'
           minDate={minimumDate}
           id='date'
           autoOk={true}
@@ -50,7 +50,8 @@ const EnigmaCard = (props) => {
           required
         />
         <CardActions>
-          <Button label='ENCRYPT' id='encrypt' onClick={handleEncryptionToggle} />
+          <Button label='SEND' id='send' onClick={sendMessage} />
+          {/* <Button label='ENCRYPT' id='encrypt' onClick={handleEncryptionToggle} /> */}
           <Button label='DECRYPT' id='toggle' onClick={handleEncryptionToggle} />
         </CardActions>
       </Card>
@@ -62,6 +63,7 @@ EnigmaCard.propTypes = {
   sender: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   date: PropTypes.any.isRequired,
+  sendMessage: PropTypes.func.isRequired,
   handleEncryptionToggle: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
 };

@@ -31,6 +31,7 @@ class Enigma extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleEncryptionToggle = this.handleEncryptionToggle.bind(this);
     this.handleErrorToggle = this.handleErrorToggle.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
     this.onAction = this.onAction.bind(this);
   }
 
@@ -96,6 +97,16 @@ class Enigma extends React.Component {
     this.setState({ errorActive: !this.state.errorActive });
   }
 
+  sendMessage() {
+    const { sender, message, date } = this.state;
+    const messagePackage = {
+      sender,
+      message,
+      date,
+    };
+    APIactions.sendMessage(messagePackage);
+  }
+
   handleEncryptionToggle(e) {
     const id = e.target.id;
     const { sender, message, date, encryptedMessage } = this.state;
@@ -159,6 +170,7 @@ class Enigma extends React.Component {
           message={this.state.message}
           date={this.state.date}
           handleEncryptionToggle={this.handleEncryptionToggle}
+          sendMessage={this.sendMessage}
           handleChange={this.handleChange}
         />
         <EncryptionModal
