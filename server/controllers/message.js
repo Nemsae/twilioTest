@@ -74,7 +74,7 @@ exports.webhook = (request, response) => {
 //  Handle form submission
 exports.sendMessages = (request, response) => {
   //  Get message info from form submission
-  const message = request.body.message;
+  const message = `${request.body.sender} says "${request.body.message}"`;
   const imageUrl = request.body.imageUrl;
 
   //  Send messages to all subs
@@ -83,11 +83,11 @@ exports.sendMessages = (request, response) => {
   }).then((subscribers) => {
     messageSender.sendMessageToSubscribers(subscribers, message, imageUrl);
   }).then(() => {
-    request.flash('successes', 'Messages on their way!');
-    response.redirect('/');
+    response.status(200).send('sendMessage success!');
   }).catch((err) => {
-    console.log(`err ${err.emessage}`);  // eslint-disable-line no-console
-    request.flash('errors', err.message);
-    response.redirect('/');
+    console.log(`err ${err.meessage}`);  // eslint-disable-line no-console
+    response.status(400).send(err.message);
+    // request.flash('errors', err.message);
+    // response.redirect('/');
   });
 };

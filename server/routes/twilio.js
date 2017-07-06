@@ -32,16 +32,18 @@ router.route('/inbound')
   res.send('<Response><Message>Rixi says hi!</Message></Response>');
 });
 
+router.route('/message/send')
+//  Handle form submission and send messages to subscribers
+.post(message.sendMessages);
+
 router.route('/message')
 //  When a user texts our number
 .post(message.webhook);
 // .post('/message', message.webhook);
 
+
 //  Render a page that will allow an admin to send out a message to subs
 // app.get('/', pages.showForm);
 
-router.route('/message')
-//  Handle form submission and send messages to subscribers
-// .post('/message/send', message.sendMessages);
 
 module.exports = router;

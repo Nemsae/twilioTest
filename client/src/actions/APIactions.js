@@ -8,7 +8,7 @@ const APIActions = {
     API.sendDecryption(decryptionPackage);
   },
   sendMessage(messagePackage) {
-    console.log('messagePackage:APIactions ', messagePackage);
+    API.sendMessage(messagePackage);
   },
 };
 
