@@ -8,7 +8,7 @@ const client = new Twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN)
 router.route('/')
 .post((req, res) => {
   const messageReq = req.body;
-  console.log('messageReq: ', messageReq);
+  console.log('messageReq: ', messageReq);  // eslint-disable-line no-console
   client.messages.create({
     body: messageReq.body,
     to: messageReq.receiver,  // Text this number
@@ -21,7 +21,7 @@ router.route('/')
     res.send(message.sid);
   })
   .catch((err) => {
-    console.log('ERROR:POST:/api/twilio ', err);
+    console.log('ERROR:POST:/api/twilio ', err);  // eslint-disable-line no-console
     res.status(400).send(err);
   });
 });
