@@ -10,3 +10,6 @@
 6. `$ npm start`
 
 ### Twilio Subscription tests
+
+### TODO
+1. Finish out subscription flow
