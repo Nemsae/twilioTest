@@ -88,8 +88,7 @@ exports.sendMessages = (request, response) => {
     response.status(200).send('sendMessage success!');
   }).catch((err) => {
     console.log(`err ${err.message}`);  // eslint-disable-line no-console
-    // response.status(400).send(err.message);
-    response.status(500).send(err.message);
+    response.status(400).send(err.message);
   });
 };
 

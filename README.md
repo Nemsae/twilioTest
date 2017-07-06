@@ -13,4 +13,5 @@
 
 ### TODO
 1. **Finish out subscription flow**
-2. Fix promise logic for sending message of `messageSender.js`
+2. **Fix promise logic for sending message of `messageSender.js`**
+2. Line 92 `res.status(400).send(`err.message`)` of `message.js`, client is not receiving the message. Fix please.
